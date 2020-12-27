@@ -42,6 +42,9 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>1</string>
        </property>
@@ -159,7 +162,7 @@
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="convertButton">
        <property name="text">
         <string>Convert</string>
        </property>
@@ -173,7 +176,7 @@
       <x>10</x>
       <y>10</y>
       <width>771</width>
-      <height>181</height>
+      <height>186</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
@@ -189,10 +192,19 @@
      <property name="spacing">
       <number>10</number>
      </property>
-     <item row="1" column="3">
-      <widget class="QSpinBox" name="outputN">
-       <property name="maximum">
-        <number>16</number>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="outputLine">
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="placeholderText">
+        <string>Output Number</string>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -203,17 +215,13 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="inputNLabel">
-       <property name="text">
-        <string>Input N:</string>
+     <item row="0" column="3">
+      <widget class="QSpinBox" name="inputN">
+       <property name="minimum">
+        <number>2</number>
        </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="outputLine">
-       <property name="frame">
-        <bool>true</bool>
+       <property name="maximum">
+        <number>16</number>
        </property>
       </widget>
      </item>
@@ -224,8 +232,22 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="inputLine"/>
+     <item row="1" column="3">
+      <widget class="QSpinBox" name="outputN">
+       <property name="minimum">
+        <number>2</number>
+       </property>
+       <property name="maximum">
+        <number>16</number>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="inputNLabel">
+       <property name="text">
+        <string>Input N:</string>
+       </property>
+      </widget>
      </item>
      <item row="1" column="2">
       <widget class="QLabel" name="outputNLabel">
@@ -234,10 +256,19 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="3">
-      <widget class="QSpinBox" name="inputN">
-       <property name="maximum">
-        <number>16</number>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="inputLine">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="placeholderText">
+        <string>Input Number</string>
        </property>
       </widget>
      </item>
