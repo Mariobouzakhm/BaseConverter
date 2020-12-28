@@ -14,6 +14,9 @@ from ntonconversion import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        """
+        Sets up all the Widgets inside the Main Window and hooks their events to them.
+        """
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(794, 597)
 
@@ -118,6 +121,7 @@ class Ui_MainWindow(object):
         self.outputN = QtWidgets.QSpinBox(self.gridLayoutWidget_2)
         self.outputN.setMinimum(2)
         self.outputN.setMaximum(16)
+        self.outputN.setValue(10)
         self.outputN.setObjectName("outputN")
         self.gridLayout_2.addWidget(self.outputN, 1, 3, 1, 1)
         self.inputNLabel = QtWidgets.QLabel(self.gridLayoutWidget_2)
@@ -146,8 +150,12 @@ class Ui_MainWindow(object):
 
         self.addButtons()
         self.connectButtons()
+        self.activateButtons()
 
     def addButtons(self):
+        """
+        Add all the QPushButton instances to a list for use later on.
+        """
         self.buttons.append(self.button_0)
         self.buttons.append(self.button_1)
         self.buttons.append(self.button_2)
@@ -166,6 +174,10 @@ class Ui_MainWindow(object):
         self.buttons.append(self.button_F)
 
     def connectButtons(self):
+        """
+        Connect all the buttons to their respective signal methods.
+        """
+
         self.button_0.clicked.connect(lambda: self.add_character_to_input_line(self.button_0))
         self.button_1.clicked.connect(lambda: self.add_character_to_input_line(self.button_1))
         self.button_2.clicked.connect(lambda: self.add_character_to_input_line(self.button_2))
@@ -182,18 +194,29 @@ class Ui_MainWindow(object):
         self.button_D.clicked.connect(lambda: self.add_character_to_input_line(self.button_D))
         self.button_E.clicked.connect(lambda: self.add_character_to_input_line(self.button_E))
         self.button_F.clicked.connect(lambda: self.add_character_to_input_line(self.button_F))
+
         self.button_DEL.clicked.connect(self.delete_last_char)
         self.convertButton.clicked.connect(self.convertBases)
 
     def add_character_to_input_line(self, btn):
+        """
+        Method that adds numbers to the input line based on the button pressed.
+        """
         value = self.inputLine.text()
 
         self.inputLine.setText(value + btn.text())
 
     def delete_last_char(self):
+        """
+        Method that deletes the last inputed character in input line after clicking the DEL button.
+        """
         self.inputLine.setText(self.inputLine.text()[:-1])
 
     def convertBases(self):
+        """
+        Method triggered when the convert button is clicked by converting the number in input line from the value in
+        input spin box to output spin box..
+        """
         inputN = int(self.inputN.text())
         outputN = int(self.outputN.text())
         number = self.inputLine.text()
@@ -203,6 +226,9 @@ class Ui_MainWindow(object):
         self.outputLine.setText(converted)
 
     def activateButtons(self):
+        """
+        Method triggered when one of the spin boxes value is changed, to enable/disable buttons based on the input base spin box.
+        """
         value = int(self.inputN.text())
 
         for button in self.buttons:
@@ -217,12 +243,10 @@ class Ui_MainWindow(object):
             else:
                 button.setEnabled(True)
 
-
-
-
-
-
     def retranslateUi(self, MainWindow):
+        """
+        Method that arranges the set inside the QWidget instances.
+        """
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.button_DEL.setText(_translate("MainWindow", "DEL"))
