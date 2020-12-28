@@ -16,6 +16,9 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(794, 597)
+
+        self.buttons = []
+
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayoutWidget = QtWidgets.QWidget(self.centralwidget)
@@ -107,6 +110,7 @@ class Ui_MainWindow(object):
         self.inputN.setMinimum(2)
         self.inputN.setMaximum(16)
         self.inputN.setObjectName("inputN")
+        self.inputN.valueChanged.connect(self.activateButtons)
         self.gridLayout_2.addWidget(self.inputN, 0, 3, 1, 1)
         self.outputLabel = QtWidgets.QLabel(self.gridLayoutWidget_2)
         self.outputLabel.setObjectName("outputLabel")
@@ -140,7 +144,26 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        self.addButtons()
         self.connectButtons()
+
+    def addButtons(self):
+        self.buttons.append(self.button_0)
+        self.buttons.append(self.button_1)
+        self.buttons.append(self.button_2)
+        self.buttons.append(self.button_3)
+        self.buttons.append(self.button_4)
+        self.buttons.append(self.button_5)
+        self.buttons.append(self.button_6)
+        self.buttons.append(self.button_7)
+        self.buttons.append(self.button_8)
+        self.buttons.append(self.button_9)
+        self.buttons.append(self.button_A)
+        self.buttons.append(self.button_B)
+        self.buttons.append(self.button_C)
+        self.buttons.append(self.button_D)
+        self.buttons.append(self.button_E)
+        self.buttons.append(self.button_F)
 
     def connectButtons(self):
         self.button_0.clicked.connect(lambda: self.add_character_to_input_line(self.button_0))
@@ -178,6 +201,24 @@ class Ui_MainWindow(object):
         converted = convertFromNtoN(inputN, outputN, number)
 
         self.outputLine.setText(converted)
+
+    def activateButtons(self):
+        value = int(self.inputN.text())
+
+        for button in self.buttons:
+
+            try:
+                button_value = int(button.text())
+            except ValueError:
+                button_value = conversion_table[button.text()]            
+
+            if value <= button_value:
+                button.setEnabled(False)
+            else:
+                button.setEnabled(True)
+
+
+
 
 
 
